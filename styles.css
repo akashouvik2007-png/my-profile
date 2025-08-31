@@ -1,62 +1,21 @@
-/* === Global Styles === */
 body {
   font-family: Arial, sans-serif;
   margin: 0;
   background: #000000; /* AMOLED black */
-  color: #e0e0e0;      /* light gray text */
-  transition: background 0.3s, color 0.3s;
+  color: #e0e0e0;
+  transition: background-color 0.4s ease, color 0.4s ease;
 }
 
-/* === Light Theme === */
-body.light-theme {
-  background: #f5f5f5;
-  color: #222;
-}
-
-body.light-theme .profile-header {
-  color: #000;
-}
-
-body.light-theme h4 {
-  color: #000;
-}
-
-/* === Theme Toggle Button === */
-#theme-toggle {
-  position: fixed;
-  top: 15px;
-  right: 15px;
-  background: #222;
-  color: #fff;
-  border: none;
-  padding: 10px 12px;
-  border-radius: 50%;
-  cursor: pointer;
-  font-size: 18px;
-  z-index: 1000;
-  transition: background 0.3s, transform 0.2s;
-}
-
-#theme-toggle:hover {
-  background: #444;
-  transform: scale(1.1);
-}
-
-body.light-theme #theme-toggle {
-  background: #ddd;
-  color: #000;
-}
-
-/* === Profile Header === */
+/* Profile Header */
 .profile-header {
   display: flex;
   align-items: center;
   padding: 20px;
   border-bottom: 1px solid #222;
-
   background: url("images/fish.webp") no-repeat center center;
   background-size: cover;
   color: #fff;
+  transition: background-color 0.4s ease, color 0.4s ease;
 }
 
 .avatar {
@@ -71,32 +30,24 @@ body.light-theme #theme-toggle {
   margin: 0;
   font-size: 24px;
   color: #ffffff;
-}
-
-.profile-info a {
-  color: #00bfff;
-  text-decoration: none;
-}
-
-.profile-info a:hover {
-  text-decoration: underline;
+  transition: color 0.4s ease;
 }
 
 .profile-info p {
   margin: 5px 0;
   color: #aaaaaa;
+  transition: color 0.4s ease;
 }
 
-/* === Section Heading === */
 h4 {
   color: #ffffff;
   margin: 20px 0 10px 0;
   font-size: 20px;
   font-weight: bold;
-  text-align: center;
+  transition: color 0.4s ease;
 }
 
-/* === Gallery === */
+/* Gallery */
 .gallery {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
@@ -106,50 +57,81 @@ h4 {
 
 .gallery img {
   width: 100%;
-  height: auto;
   display: block;
   border-radius: 5px;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  cursor: pointer;
+  transition: transform 0.2s ease, opacity 0.5s ease;
+  opacity: 0;
+  animation: fadeIn 0.8s forwards;
 }
 
 .gallery img:hover {
   transform: scale(1.05);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
 }
 
-/* === Lightbox === */
-#lightbox {
-  display: none;
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
+/* Light Theme Overrides */
+body.light-theme {
+  background: #f9f9f9;
+  color: #222;
+}
+
+body.light-theme .profile-header {
+  background: url("images/fish.webp") no-repeat center center;
+  background-size: cover;
+  color: #000;
+}
+
+body.light-theme h4,
+body.light-theme .profile-info h1,
+body.light-theme .profile-info p {
+  color: #222;
+}
+
+/* Theme Toggle Switch */
+.theme-toggle {
   position: fixed;
-  z-index: 999;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.9);
-  justify-content: center;
-  align-items: center;
+  top: 10px;
+  right: 10px;
 }
 
-#lightbox img {
-  max-width: 90%;
-  max-height: 80%;
-  border-radius: 10px;
-  box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 24px;
 }
 
-#close {
+.switch input { display: none; }
+
+.slider {
   position: absolute;
-  top: 20px;
-  right: 40px;
-  font-size: 40px;
-  color: #fff;
   cursor: pointer;
-  font-weight: bold;
-  transition: color 0.2s;
+  top: 0; left: 0;
+  right: 0; bottom: 0;
+  background-color: #555;
+  transition: 0.4s;
+  border-radius: 24px;
 }
 
-#close:hover {
-  color: #ff4444;
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: #222;
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px);
 }
