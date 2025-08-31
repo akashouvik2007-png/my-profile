@@ -78,18 +78,6 @@ body.light-theme {
   color: #222;
 }
 
-body.light-theme .profile-header {
-  background: url("images/fish.webp") no-repeat center center;
-  background-size: cover;
-  color: #000;
-}
-
-body.light-theme h4,
-body.light-theme .profile-info h1,
-body.light-theme .profile-info p {
-  color: #222;
-}
-
 /* Theme Toggle Switch */
 .theme-toggle {
   position: fixed;
