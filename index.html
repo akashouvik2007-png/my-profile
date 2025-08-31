@@ -5,18 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Shouvik's profile</title>
   <link rel="stylesheet" href="styles.css">
-
-  <!-- Favicon (optional) -->
-  <link rel="icon" type="image/png" href="images/favicon.png">
 </head>
 <body>
 
   <!-- Theme Toggle -->
-  <button id="theme-toggle">🌙</button>
+  <div class="theme-toggle">
+    <label class="switch">
+      <input type="checkbox" id="themeSlider">
+      <span class="slider"></span>
+    </label>
+  </div>
 
   <!-- Profile Section -->
   <div class="profile-header">
-    <img src="https://i.pinimg.com/1200x/b3/8e/51/b38e5178d2a0ba905852de8b4fc284db.jpg" alt="Avatar" class="avatar" width="300px">
+    <img src="https://i.pinimg.com/1200x/b3/8e/51/b38e5178d2a0ba905852de8b4fc284db.jpg" 
+         alt="Avatar" class="avatar" width="300px">
     <div class="profile-info">
       <h1>shouvik</h1>
       <a href="https://www.instagram.com/shouvik_2007/">@shouvik_2007</a>
@@ -27,63 +30,18 @@
   <!-- Gallery Section -->
   <h4><u> Some of my works </u></h4>
   <div class="gallery">
-    <a href="images/pic1.jpg"><img src="images/pic1.jpg" alt="Photo 1"></a>
-    <a href="images/pic2.jpg"><img src="images/pic2.jpg" alt="Photo 2"></a>
-    <a href="images/pic3.jpg"><img src="images/pic3.jpg" alt="Photo 3"></a>
-    <a href="images/pic4.jpg"><img src="images/pic4.jpg" alt="Photo 4"></a>
-    <a href="images/pic6.jpg"><img src="images/pic6.jpg" alt="Photo 6"></a>
+    <a href="images/pic1.jpg" target="_blank"><img src="images/pic1.jpg" alt="Photo 1"></a>
+    <a href="images/pic2.jpg" target="_blank"><img src="images/pic2.jpg" alt="Photo 2"></a>
+    <a href="images/pic3.jpg" target="_blank"><img src="images/pic3.jpg" alt="Photo 3"></a>
+    <a href="images/pic4.jpg" target="_blank"><img src="images/pic4.jpg" alt="Photo 4"></a>
+    <a href="images/pic6.jpg" target="_blank"><img src="images/pic6.jpg" alt="Photo 6"></a>
   </div>
 
-  <!-- Lightbox Overlay -->
-  <div id="lightbox">
-    <span id="close">&times;</span>
-    <img id="lightbox-img" src="" alt="">
-  </div>
-
-  <!-- Scripts -->
+  <!-- Theme Toggle Script -->
   <script>
-    // Lightbox
-    const galleryLinks = document.querySelectorAll('.gallery a');
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImg = document.getElementById('lightbox-img');
-    const closeBtn = document.getElementById('close');
-
-    galleryLinks.forEach(link => {
-      link.addEventListener('click', e => {
-        e.preventDefault();
-        lightboxImg.src = link.href;
-        lightbox.style.display = 'flex';
-      });
-    });
-
-    closeBtn.addEventListener('click', () => {
-      lightbox.style.display = 'none';
-    });
-
-    lightbox.addEventListener('click', e => {
-      if (e.target === lightbox) {
-        lightbox.style.display = 'none';
-      }
-    });
-
-    // Theme Toggle
-    const themeBtn = document.getElementById("theme-toggle");
-
-    if (localStorage.getItem("theme") === "light") {
-      document.body.classList.add("light-theme");
-      themeBtn.textContent = "☀️";
-    }
-
-    themeBtn.addEventListener("click", () => {
-      document.body.classList.toggle("light-theme");
-
-      if (document.body.classList.contains("light-theme")) {
-        themeBtn.textContent = "☀️";
-        localStorage.setItem("theme", "light");
-      } else {
-        themeBtn.textContent = "🌙";
-        localStorage.setItem("theme", "dark");
-      }
+    const slider = document.getElementById('themeSlider');
+    slider.addEventListener('change', () => {
+      document.body.classList.toggle('light-theme');
     });
   </script>
 
