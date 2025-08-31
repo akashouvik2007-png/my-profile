@@ -1,13 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Shouvik's profile</title>
   <link rel="stylesheet" href="styles.css">
 
-  <!-- Favicon -->
+  <!-- Favicon (optional) -->
   <link rel="icon" type="image/png" href="images/favicon.png">
 </head>
 <body>
+
+  <!-- Theme Toggle -->
+  <button id="theme-toggle">🌙</button>
 
   <!-- Profile Section -->
   <div class="profile-header">
@@ -20,48 +25,67 @@
   </div>
 
   <!-- Gallery Section -->
-<h4><u> Some of my works </u></h4>
-<div class="gallery">
-  <a href="images/pic1.jpg"><img src="images/pic1.jpg" alt="Photo 1"></a>
-  <a href="images/pic2.jpg"><img src="images/pic2.jpg" alt="Photo 2"></a>
-  <a href="images/pic3.jpg"><img src="images/pic3.jpg" alt="Photo 3"></a>
-  <a href="images/pic4.jpg"><img src="images/pic4.jpg" alt="Photo 4"></a>
-  <a href="images/pic6.jpg"><img src="images/pic6.jpg" alt="Photo 6"></a>
-</div>
+  <h4><u> Some of my works </u></h4>
+  <div class="gallery">
+    <a href="images/pic1.jpg"><img src="images/pic1.jpg" alt="Photo 1"></a>
+    <a href="images/pic2.jpg"><img src="images/pic2.jpg" alt="Photo 2"></a>
+    <a href="images/pic3.jpg"><img src="images/pic3.jpg" alt="Photo 3"></a>
+    <a href="images/pic4.jpg"><img src="images/pic4.jpg" alt="Photo 4"></a>
+    <a href="images/pic6.jpg"><img src="images/pic6.jpg" alt="Photo 6"></a>
+  </div>
 
-<!-- Lightbox overlay -->
-<div id="lightbox">
-  <span id="close">&times;</span>
-  <img id="lightbox-img" src="" alt="">
-</div>
+  <!-- Lightbox Overlay -->
+  <div id="lightbox">
+    <span id="close">&times;</span>
+    <img id="lightbox-img" src="" alt="">
+  </div>
 
+  <!-- Scripts -->
+  <script>
+    // Lightbox
+    const galleryLinks = document.querySelectorAll('.gallery a');
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const closeBtn = document.getElementById('close');
 
-<script>
-  const galleryLinks = document.querySelectorAll('.gallery a');
-  const lightbox = document.getElementById('lightbox');
-  const lightboxImg = document.getElementById('lightbox-img');
-  const closeBtn = document.getElementById('close');
-
-  // Open lightbox when image is clicked
-  galleryLinks.forEach(link => {
-    link.addEventListener('click', e => {
-      e.preventDefault(); // stop normal link
-      lightboxImg.src = link.href;
-      lightbox.style.display = 'flex';
+    galleryLinks.forEach(link => {
+      link.addEventListener('click', e => {
+        e.preventDefault();
+        lightboxImg.src = link.href;
+        lightbox.style.display = 'flex';
+      });
     });
-  });
 
-  // Close lightbox
-  closeBtn.addEventListener('click', () => {
-    lightbox.style.display = 'none';
-  });
-
-  // Close on background click
-  lightbox.addEventListener('click', e => {
-    if (e.target === lightbox) {
+    closeBtn.addEventListener('click', () => {
       lightbox.style.display = 'none';
+    });
+
+    lightbox.addEventListener('click', e => {
+      if (e.target === lightbox) {
+        lightbox.style.display = 'none';
+      }
+    });
+
+    // Theme Toggle
+    const themeBtn = document.getElementById("theme-toggle");
+
+    if (localStorage.getItem("theme") === "light") {
+      document.body.classList.add("light-theme");
+      themeBtn.textContent = "☀️";
     }
-  });
-</script>
+
+    themeBtn.addEventListener("click", () => {
+      document.body.classList.toggle("light-theme");
+
+      if (document.body.classList.contains("light-theme")) {
+        themeBtn.textContent = "☀️";
+        localStorage.setItem("theme", "light");
+      } else {
+        themeBtn.textContent = "🌙";
+        localStorage.setItem("theme", "dark");
+      }
+    });
+  </script>
+
 </body>
 </html>
