@@ -77,6 +77,10 @@ body.light-theme {
   background: #f9f9f9;
   color: #222;
 }
+/* Flip only the h4 heading in light theme */
+body.light-theme h4 {
+  color: #222;
+}
 
 /* Theme Toggle Switch */
 .theme-toggle {
