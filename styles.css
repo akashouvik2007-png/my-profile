@@ -78,6 +78,16 @@ h4 {
 .gallery img:hover {
   transform: scale(1.05);
 }
+/* Footer */
+.site-footer {
+  text-align: center;
+  padding: 15px 10px;
+  border-top: 1px solid #222;
+  background-color: #111;  /* dark footer */
+  color: #ccc;
+  font-size: 14px;
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
 
 @keyframes fadeIn {
   to { opacity: 1; }
@@ -91,6 +101,10 @@ body.light-theme {
 /* Flip only the h4 heading in light theme */
 body.light-theme h4 {
   color: #222;
+}
+body.light-theme .site-footer {
+  background-color: #f0f0f0;
+  color: #333;
 }
 
 /* Theme Toggle Switch */
