@@ -9,9 +9,14 @@ body {
   display: flex;
   align-items: center;
   padding: 20px;
-  border-bottom: 1px solid #222; /* subtle border */
-  background: #0a0a0a;           /* slightly lighter than pure black */
+  border-bottom: 1px solid #222;
+
+  /* Banner image */
+  background: url("images/fish.webp") no-repeat center center;
+  background-size: cover; /* scales the banner to fit */
+  color: #fff; /* text stays readable */
 }
+
 
 .avatar {
   width: 100px;
