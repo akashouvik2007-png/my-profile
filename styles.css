@@ -1,22 +1,59 @@
-/* Global */
+/* === Global Styles === */
 body {
   font-family: Arial, sans-serif;
   margin: 0;
-  background: #000000; /* AMOLED pure black */
-  color: #e0e0e0;      /* light gray text for readability */
-  max-width: 1000px;   /* keeps text/images centered on big screens */
-  margin: 0 auto;
-  line-height: 1.5;
+  background: #000000; /* AMOLED black */
+  color: #e0e0e0;      /* light gray text */
+  transition: background 0.3s, color 0.3s;
 }
 
-/* Profile header */
+/* === Light Theme === */
+body.light-theme {
+  background: #f5f5f5;
+  color: #222;
+}
+
+body.light-theme .profile-header {
+  color: #000;
+}
+
+body.light-theme h4 {
+  color: #000;
+}
+
+/* === Theme Toggle Button === */
+#theme-toggle {
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  background: #222;
+  color: #fff;
+  border: none;
+  padding: 10px 12px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 18px;
+  z-index: 1000;
+  transition: background 0.3s, transform 0.2s;
+}
+
+#theme-toggle:hover {
+  background: #444;
+  transform: scale(1.1);
+}
+
+body.light-theme #theme-toggle {
+  background: #ddd;
+  color: #000;
+}
+
+/* === Profile Header === */
 .profile-header {
   display: flex;
   align-items: center;
   padding: 20px;
   border-bottom: 1px solid #222;
 
-  /* Banner image */
   background: url("images/fish.webp") no-repeat center center;
   background-size: cover;
   color: #fff;
@@ -28,8 +65,6 @@ body {
   border-radius: 50%;
   margin-right: 20px;
   object-fit: cover;
-  border: 2px solid #fff;
-  box-shadow: 0 0 10px rgba(255,255,255,0.2);
 }
 
 .profile-info h1 {
@@ -38,21 +73,21 @@ body {
   color: #ffffff;
 }
 
+.profile-info a {
+  color: #00bfff;
+  text-decoration: none;
+}
+
+.profile-info a:hover {
+  text-decoration: underline;
+}
+
 .profile-info p {
   margin: 5px 0;
   color: #aaaaaa;
 }
 
-.profile-info a {
-  color: #1da1f2; /* bright link */
-  text-decoration: none;
-  font-weight: bold;
-}
-.profile-info a:hover {
-  text-decoration: underline;
-}
-
-/* Section heading */
+/* === Section Heading === */
 h4 {
   color: #ffffff;
   margin: 20px 0 10px 0;
@@ -61,60 +96,47 @@ h4 {
   text-align: center;
 }
 
-/* Gallery (responsive squares) */
+/* === Gallery === */
 .gallery {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
   gap: 5px;
   padding: 10px;
 }
 
-.gallery a {
-  position: relative;
-  width: 100%;
-  padding-top: 100%; /* makes squares */
-  overflow: hidden;
-}
-
 .gallery img {
-  position: absolute;
-  top: 0;
-  left: 0;
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto;
+  display: block;
   border-radius: 5px;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
 }
 
 .gallery img:hover {
   transform: scale(1.05);
-  box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
 }
 
-/* Force 3 columns on mobile */
-@media (max-width: 600px) {
-  .gallery {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-/* Lightbox */
+/* === Lightbox === */
 #lightbox {
+  display: none;
   position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: rgba(0,0,0,0.9);
-  display: none;            /* hidden by default */
+  z-index: 999;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.9);
   justify-content: center;
   align-items: center;
-  z-index: 1000;
 }
 
 #lightbox img {
   max-width: 90%;
-  max-height: 90%;
+  max-height: 80%;
   border-radius: 10px;
-  box-shadow: 0 0 20px rgba(255,255,255,0.3);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
 }
 
 #close {
@@ -122,10 +144,12 @@ h4 {
   top: 20px;
   right: 40px;
   font-size: 40px;
-  color: white;
+  color: #fff;
   cursor: pointer;
   font-weight: bold;
+  transition: color 0.2s;
 }
+
 #close:hover {
   color: #ff4444;
 }
