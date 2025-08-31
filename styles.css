@@ -1,15 +1,16 @@
 body {
   font-family: Arial, sans-serif;
   margin: 0;
-  background:#121212;
+  background: #000000; /* AMOLED pure black */
+  color: #e0e0e0;      /* light gray text for readability */
 }
 
 .profile-header {
   display: flex;
   align-items: center;
   padding: 20px;
-  border-bottom: 1px solid #ddd;
-  background: #fff;
+  border-bottom: 1px solid #222; /* subtle border */
+  background: #0a0a0a;           /* slightly lighter than pure black */
 }
 
 .avatar {
@@ -23,11 +24,12 @@ body {
 .profile-info h1 {
   margin: 0;
   font-size: 24px;
+  color: #ffffff; /* white for name */
 }
 
 .profile-info p {
   margin: 5px 0;
-  color: #666;
+  color: #aaaaaa; /* softer gray for bio/details */
 }
 
 .gallery {
