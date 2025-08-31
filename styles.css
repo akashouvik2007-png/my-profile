@@ -81,15 +81,11 @@ h4 {
 footer {
   margin-top: 40px;
   padding: 15px;
-  background: rgba(0, 0, 0, 0.2); /* slightly more visible on dark bg */
+  background: rgba(0, 255, 255, 0.25); /* cyan undertone with more opacity */
   font-size: 14px;
-  color: #ccc; /* light gray, readable on dark bg */
+  color: #e0f7ff; /* light cyan-ish text for readability */
   text-align: center;
-}
-
-/* Optional: hover effect for subtle brightness */
-footer:hover {
-  background: rgba(0, 0, 0, 0.25);
+  border-top: 1px solid rgba(0, 255, 255, 0.4); /* subtle cyan border accent */
 }
 
 @keyframes fadeIn {
