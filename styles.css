@@ -81,9 +81,9 @@ h4 {
 footer {
   margin-top: 40px;
   padding: 15px;
-  background: rgba(0, 255, 255, 0.25); /* cyan undertone with more opacity */
+background: rgba(0,0,0,.05);
   font-size: 14px;
-  color: #e0f7ff; /* light cyan-ish text for readability */
+  color:#7f8c8d; /* light cyan-ish text for readability */
   text-align: center;
 }
 
