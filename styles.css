@@ -85,7 +85,6 @@ footer {
   font-size: 14px;
   color: #e0f7ff; /* light cyan-ish text for readability */
   text-align: center;
-  border-top: 1px solid rgba(0, 255, 255, 0.4); /* subtle cyan border accent */
 }
 
 @keyframes fadeIn {
