@@ -78,15 +78,18 @@ h4 {
 .gallery img:hover {
   transform: scale(1.05);
 }
-/* Footer */
-.site-footer {
-  text-align: center;
-  padding: 15px 10px;
-  border-top: 1px solid #222;
-  background-color: #111;  /* dark footer */
-  color: #ccc;
+footer {
+  margin-top: 40px;
+  padding: 15px;
+  background: rgba(0, 0, 0, 0.2); /* slightly more visible on dark bg */
   font-size: 14px;
-  transition: background-color 0.4s ease, color 0.4s ease;
+  color: #ccc; /* light gray, readable on dark bg */
+  text-align: center;
+}
+
+/* Optional: hover effect for subtle brightness */
+footer:hover {
+  background: rgba(0, 0, 0, 0.25);
 }
 
 @keyframes fadeIn {
@@ -102,10 +105,7 @@ body.light-theme {
 body.light-theme h4 {
   color: #222;
 }
-body.light-theme .site-footer {
-  background-color: #f0f0f0;
-  color: #333;
-}
+
 
 /* Theme Toggle Switch */
 .theme-toggle {
