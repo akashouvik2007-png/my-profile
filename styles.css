@@ -10,24 +10,77 @@ body {
   min-height: 100vh;
 }
 
+/* --- Navigation Bar --- */
+.navbar {
+  width: 100%;
+  background: #111;
+  border-bottom: 1px solid #333;
+  padding: 12px 0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.navbar ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+}
+
+.navbar li {
+  display: inline;
+}
+
+.navbar a {
+  color: #f5c0c0;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: bold;
+  transition: color 0.3s ease, border-bottom 0.3s ease;
+  padding-bottom: 4px;
+}
+
+.navbar a:hover {
+  color: #ffdada;
+  border-bottom: 2px solid #f5c0c0;
+}
+
+/* Light theme navbar */
+body.light-theme .navbar {
+  background: #fff;
+  border-bottom: 1px solid #ddd;
+}
+
+body.light-theme .navbar a {
+  color: #e63946;
+}
+
+body.light-theme .navbar a:hover {
+  color: #ff6b6b;
+  border-bottom: 2px solid #e63946;
+}
+
 /* --- Profile Header --- */
 .profile-header {
   display: flex;
   align-items: center;
   padding: 20px;
   border-bottom: 1px solid #222;
-  background: url("images/fish.webp") no-repeat center center;
+  background: url("images/Shin.gif") no-repeat center center;
   background-size: cover;
   color: #fff;
   transition: background-color 0.4s ease, color 0.4s ease;
 }
 
 .avatar {
-  width: 100px; /* consistent size, remove inline HTML width */
+  width: 100px;
   height: 100px;
   border-radius: 50%;
   margin-right: 20px;
-  object-fit: cover; /* avoids stretching */
+  object-fit: cover;
 }
 
 .profile-info h1 {
@@ -39,13 +92,13 @@ body {
 
 .profile-info a {
   color: #4da6ff;
-  text-decoration: none; /* remove underline by default */
+  text-decoration: none;
   transition: color 0.3s ease;
 }
 
 .profile-info a:hover {
-  color: #80c1ff; /* lighter blue on hover */
-  text-decoration: underline; /* underline on hover */
+  color: #80c1ff;
+  text-decoration: underline;
 }
 
 .profile-info p {
@@ -59,24 +112,24 @@ h4 {
   color: #ffffff;
   background: #e63946;
   display: inline-block;
-  align-self: flex-start; /* ensures heading aligns left in flex container */
+  align-self: flex-start;
   padding: 4px 10px;
   border-radius: 20px;
   margin: 25px 0 15px 0;
   font-size: 20px;
   font-weight: bold;
+  text-decoration: underline;
   transition: color 0.4s ease;
-  text-decoration: underline; /* no need for <u> in HTML */
 }
 
 /* --- Gallery --- */
 .gallery {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* always 3 columns on mobile */
+  grid-template-columns: repeat(3, 1fr);
   gap: 8px;
   padding: 10px;
-  border-bottom: 1px solid #333; /* subtle separator */
-  margin-bottom: 20px; /* spacing before next section */
+  border-bottom: 1px solid #333;
+  margin-bottom: 20px;
 }
 
 .gallery img {
@@ -98,10 +151,9 @@ h4 {
   }
 }
 
-
 .gallery img:hover {
   transform: scale(1.05);
-  filter: brightness(1.1); /* subtle hover effect */
+  filter: brightness(1.1);
 }
 
 @keyframes fadeIn {
@@ -110,12 +162,17 @@ h4 {
 
 /* --- Footer --- */
 footer {
-  margin-top: auto; /* push footer to bottom */
+  margin-top: auto;
   padding: 15px;
   background: rgba(0,0,0,.05);
   font-size: 14px;
   color: #7f8c8d;
   text-align: center;
+}
+
+body.light-theme footer {
+  background: rgba(0,0,0,.1);
+  color: #555;
 }
 
 /* --- Light Theme Overrides --- */
@@ -125,7 +182,7 @@ body.light-theme {
 }
 
 body.light-theme h4 {
-  color: #222; /* only flip heading color */
+  color: #222;
 }
 
 /* --- Theme Toggle --- */
@@ -133,7 +190,7 @@ body.light-theme h4 {
   position: fixed;
   top: 10px;
   right: 10px;
-  z-index: 1000; /* ensures toggle stays above content */
+  z-index: 1001;
 }
 
 .switch {
@@ -147,9 +204,8 @@ body.light-theme h4 {
 
 .slider {
   position: absolute;
-  cursor: pointer; /* makes it obvious it's clickable */
-  top: 0; left: 0;
-  right: 0; bottom: 0;
+  cursor: pointer;
+  top: 0; left: 0; right: 0; bottom: 0;
   background-color: #555;
   transition: 0.4s;
   border-radius: 24px;
