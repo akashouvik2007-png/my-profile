@@ -90,7 +90,7 @@ h4 {
 /* Desktop layout */
 @media (min-width: 768px) {
   .gallery {
-    grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 12px;
     padding: 20px;
   }
