@@ -69,7 +69,7 @@ body.light-theme .navbar a:hover {
   align-items: center;
   padding: 20px;
   border-bottom: 1px solid #222;
-  background: url("images/Shin.gif") no-repeat center center;
+  background: url("images/fish.webp") no-repeat center center;
   background-size: cover;
   color: #fff;
   transition: background-color 0.4s ease, color 0.4s ease;
