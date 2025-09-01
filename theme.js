@@ -1,17 +1,26 @@
-// Get the toggle slider
-const slider = document.getElementById('themeSlider');
+// theme.js
 
-// Apply saved theme on page load
-if (localStorage.getItem('theme') === 'light') {
-  document.body.classList.add('light-theme');
+const slider = document.getElementById('themeSlider');
+const body = document.body;
+
+// 1️⃣ Load saved theme on page load
+const savedTheme = localStorage.getItem('theme');
+if (savedTheme === 'light') {
+  body.classList.add('light-theme');
   if (slider) slider.checked = true;
+} else {
+  body.classList.remove('light-theme');
+  if (slider) slider.checked = false;
 }
 
-// Listen for toggle changes
+// 2️⃣ Toggle theme and save preference
 if (slider) {
   slider.addEventListener('change', () => {
-    document.body.classList.toggle('light-theme');
-    const theme = document.body.classList.contains('light-theme') ? 'light' : 'dark';
-    localStorage.setItem('theme', theme);
+    body.classList.toggle('light-theme');
+    if (body.classList.contains('light-theme')) {
+      localStorage.setItem('theme', 'light');
+    } else {
+      localStorage.setItem('theme', 'dark');
+    }
   });
 }
