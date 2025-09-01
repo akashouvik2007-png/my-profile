@@ -75,6 +75,8 @@ h4 {
   grid-template-columns: repeat(3, 1fr); /* always 3 columns on mobile */
   gap: 8px;
   padding: 10px;
+  border-bottom: 1px solid #333; /* subtle separator */
+  margin-bottom: 20px; /* spacing before next section */
 }
 
 .gallery img {
