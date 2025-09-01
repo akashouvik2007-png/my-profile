@@ -4,6 +4,9 @@ body {
   background: #000000; /* AMOLED black */
   color: #e0e0e0;
   transition: background-color 0.4s ease, color 0.4s ease;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 /* Profile Header */
@@ -52,7 +55,12 @@ body {
 
 h4 {
   color: #ffffff;
-  margin: 20px 0 10px 0;
+  background: #e63946;
+  display: inline-block;
+  align-self: flex-start;
+  padding: 4px 10px;
+  border-radius: 20px;
+  margin: 25px 0 15px 0;
   font-size: 20px;
   font-weight: bold;
   transition: color 0.4s ease;
@@ -78,6 +86,7 @@ h4 {
 .gallery img:hover {
   transform: scale(1.05);
 }
+.blank{flex: 1; }
 footer {
   margin-top: 40px;
   padding: 15px;
