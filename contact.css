@@ -1,0 +1,16 @@
+.content{background:#F5F5F5; color:black; padding-left:25px; margin-bottom:20px;
+transition: background-color 0.4s ease, color 0.4s ease;
+  text-decoration: underline;
+}
+body.light-theme .content{background: black; color:white }
+
+.box{
+  font-size:30px; background: black; padding: 20px; margin: 5px 20px; border: 2px solid white;
+  border-radius: 10px; transition: background-color 0.4s ease, color 0.4s ease;
+}
+.box a{ 
+  color: white; text-decoration: none; display: inline-block; transition: color 0.4s ease; transition: transform 0.2s ease; 
+  }
+  .box a:hover { transform: scale(0.8);}
+body.light-theme .box{  background: white;  border: 2px solid black;}
+body.light-theme .box a{ color: black;}
