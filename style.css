@@ -146,3 +146,7 @@ input:checked + .slider {
 input:checked + .slider:before {
   transform: translateX(26px);
 }
+
+footer { 
+  margin-top: auto; text-align: center;
+  }
