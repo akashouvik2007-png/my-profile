@@ -148,5 +148,9 @@ input:checked + .slider:before {
 }
 
 footer { 
-  margin-top: auto; text-align: center;
+margin-top: auto;
+  padding: 15px;
+  background: rgba(0,0,0,.05);
+  font-size: 14px;
+  text-align: center;
   }
