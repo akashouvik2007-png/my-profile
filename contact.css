@@ -11,10 +11,10 @@
   font-size: 1.8rem;
   font-weight: 700;
   background: black;
-  color: red;
+  color: #4da6ff;
   padding: 12px 90px;
   border-radius: 12px;
-  border: 2px solid red;
+  border: 2px solid #4da6ff;
   transition: transform 0.2s ease, box-shadow 0.3s ease;
 }
 
