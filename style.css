@@ -19,7 +19,14 @@ body {
   position: sticky;
   top: 0;
   z-index: 1000;
-  transition: color 0.4s ease, border-bottom 0.4s ease;
+  display: flex;
+  justify-content: center;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+  transition: background 0.4s ease, box-shadow 0.4s ease;
+}
+
+.navbar.scrolled {
+  box-shadow: 0 4px 10px rgba(0,0,0,0.5);
 }
 
 .navbar ul {
@@ -27,29 +34,44 @@ body {
   margin: 0;
   padding: 0;
   display: flex;
-  justify-content: center;
-  gap: 25px;
+  gap: 30px;
 }
 
 .navbar li {
   display: inline;
+  position: relative;
 }
 
 .navbar a {
   color: #f5c0c0;
   text-decoration: none;
   font-size: 16px;
-  font-weight: bold;
-  transition: color 0.3s ease, border-bottom 0.3s ease;
-  padding-bottom: 4px;
+  font-weight: 600;
+  padding: 6px 0;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.navbar a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0%;
+  height: 2px;
+  background: #f5c0c0;
+  transition: width 0.3s ease;
 }
 
 .navbar a:hover {
   color: #ffdada;
-  border-bottom: 2px solid #f5c0c0;
 }
 
-/* Light theme navbar */
+.navbar a:hover::after {
+  width: 100%;
+}
+
+/* Light Theme Navbar */
 body.light-theme .navbar {
   background: #fff;
   border-bottom: 1px solid #ddd;
@@ -61,7 +83,10 @@ body.light-theme .navbar a {
 
 body.light-theme .navbar a:hover {
   color: #ff6b6b;
-  border-bottom: 2px solid #e63946;
+}
+
+body.light-theme .navbar a::after {
+  background: #e63946;
 }
 
 /* --- Profile Header --- */
@@ -230,7 +255,4 @@ input:checked + .slider {
 input:checked + .slider:before {
   transform: translateX(26px);
 }
- 
-
-
 
