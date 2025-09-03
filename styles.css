@@ -2,12 +2,12 @@
 body {
   font-family: Arial, sans-serif;
   margin: 0;
-  background: #000000; /* AMOLED black */
+  background: #000; /* AMOLED black */
   color: #e0e0e0;
-  transition: background-color 0.4s ease, color 0.4s ease;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  transition: background-color 0.4s ease, color 0.4s ease;
 }
 
 /* --- Navigation Bar --- */
@@ -19,6 +19,14 @@ body {
   position: sticky;
   top: 0;
   z-index: 1000;
+  display: flex;
+  justify-content: center;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+  transition: background 0.4s ease, box-shadow 0.4s ease;
+}
+
+.navbar.scrolled {
+  box-shadow: 0 4px 10px rgba(0,0,0,0.5);
 }
 
 .navbar ul {
@@ -26,29 +34,44 @@ body {
   margin: 0;
   padding: 0;
   display: flex;
-  justify-content: center;
-  gap: 25px;
+  gap: 30px;
 }
 
 .navbar li {
   display: inline;
+  position: relative;
 }
 
 .navbar a {
   color: #f5c0c0;
   text-decoration: none;
   font-size: 16px;
-  font-weight: bold;
-  transition: color 0.3s ease, border-bottom 0.3s ease;
-  padding-bottom: 4px;
+  font-weight: 600;
+  padding: 6px 0;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.navbar a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0%;
+  height: 2px;
+  background: #f5c0c0;
+  transition: width 0.3s ease;
 }
 
 .navbar a:hover {
   color: #ffdada;
-  border-bottom: 2px solid #f5c0c0;
 }
 
-/* Light theme navbar */
+.navbar a:hover::after {
+  width: 100%;
+}
+
+/* Light Theme Navbar */
 body.light-theme .navbar {
   background: #fff;
   border-bottom: 1px solid #ddd;
@@ -60,7 +83,10 @@ body.light-theme .navbar a {
 
 body.light-theme .navbar a:hover {
   color: #ff6b6b;
-  border-bottom: 2px solid #e63946;
+}
+
+body.light-theme .navbar a::after {
+  background: #e63946;
 }
 
 /* --- Profile Header --- */
@@ -68,11 +94,26 @@ body.light-theme .navbar a:hover {
   display: flex;
   align-items: center;
   padding: 20px;
+  position: relative;
   border-bottom: 1px solid #222;
   background: url("images/fish.webp") no-repeat center center;
   background-size: cover;
   color: #fff;
+  overflow: hidden;
   transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+.profile-header::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.4);
+  z-index: 0;
+}
+
+.profile-header > * {
+  position: relative;
+  z-index: 1;
 }
 
 .avatar {
@@ -85,7 +126,7 @@ body.light-theme .navbar a:hover {
 
 .profile-info h1 {
   margin: 0;
-  font-size: 24px;
+  font-size: 26px;
   color: #ffffff;
   transition: color 0.4s ease;
 }
@@ -109,54 +150,51 @@ body.light-theme .navbar a:hover {
 
 /* --- Section Heading --- */
 h4 {
-  color: #ffffff;
-  background: #e63946;
+  color: white;
+  background: linear-gradient(90deg, #e63946, #ff6b6b);
   display: inline-block;
-  align-self: flex-start;
-  padding: 4px 10px;
-  border-radius: 20px;
+  padding: 4px 12px;
+  border-radius: 24px;
   margin: 25px 0 15px 0;
   font-weight: bold;
-  text-decoration: underline;
-  transition: color 0.4s ease;
+  transition: all 0.4s ease;
 }
 
 /* --- Gallery --- */
 .gallery {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 8px;
-  padding: 10px;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 12px;
+  padding: 20px;
   border-bottom: 1px solid #333;
   margin-bottom: 20px;
 }
 
 .gallery img {
   width: 100%;
-  aspect-ratio: 1 / 1;
+  aspect-ratio: 1/1;
   object-fit: cover;
-  border-radius: 6px;
-  transition: transform 0.2s ease, filter 0.3s ease, opacity 0.5s ease;
+  border-radius: 8px;
+  transform: scale(1);      /* stable base scale */
+  opacity: 1;
+  transition: transform 0.4s ease, filter 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gallery img.fade-in {
   opacity: 0;
+  transform: scale(0.95);
   animation: fadeIn 0.8s forwards;
 }
 
-/* Desktop layout */
-@media (min-width: 768px) {
-  .gallery {
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 12px;
-    padding: 20px;
-  }
-}
-
 .gallery img:hover {
-  transform: scale(1.05);
-  filter: brightness(1.1);
+  transform: scale(1.1);
+  filter: brightness(1.15);
+  box-shadow: 0 10px 20px rgba(255,192,192,0.3);
 }
 
 @keyframes fadeIn {
-  to { opacity: 1; }
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
 }
 
 /* --- Footer --- */
@@ -167,6 +205,7 @@ footer {
   font-size: 14px;
   color: #7f8c8d;
   text-align: center;
+  transition: background 0.4s ease, color 0.4s ease;
 }
 
 body.light-theme footer {
@@ -224,6 +263,7 @@ body.light-theme h4 {
 
 input:checked + .slider {
   background-color: #222;
+  box-shadow: 0 0 8px #f5c0c0;
 }
 
 input:checked + .slider:before {
