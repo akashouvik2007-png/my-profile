@@ -150,11 +150,12 @@ body.light-theme .navbar a::after {
 
 /* --- Section Heading --- */
 h4 {
+  font-size:5px
   color: white;
   background: linear-gradient(90deg, #e63946, #ff6b6b);
   display: inline-block;
   padding: 4px 12px;
-  border-radius: 24px;
+  border-radius: 15px;
   margin: 25px 0 15px 0;
   font-weight: bold;
   transition: all 0.4s ease;
@@ -167,7 +168,7 @@ h4 {
   gap: 12px;
   padding: 20px;
   border-bottom: 1px solid #333;
-  margin-bottom: 20px;
+  margin: 20px 6px;
 }
 
 .gallery img {
@@ -268,4 +269,57 @@ input:checked + .slider {
 
 input:checked + .slider:before {
   transform: translateX(26px);
+}
+/* --- Zigzag Ball Animation --- */
+:root {
+  --arena-w: 500px;
+  --arena-h: 50px;
+  --ball: 20px;
+}
+
+.arena-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 5px 0;
+}
+
+.arena {
+  width: var(--arena-w);
+  height: var(--arena-h);
+  border: 2px solid #ff5757;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 30px rgba(255,255,255,0.08) inset;
+  background: #111;
+  border-radius: 10px;
+}
+
+body.light-theme .arena {
+  border-color: #e63946;
+  background: #eee;
+}
+
+.ball {
+  width: var(--ball);
+  height: var(--ball);
+  border-radius: 50%;
+  background: #ff5757;
+  position: absolute;
+  top: 0;
+  left: 0;
+  box-shadow: 0 8px 18px rgba(0,0,0,0.4);
+  animation: zigN 2s linear infinite alternate;
+}
+
+body.light-theme .ball {
+  background: #e63946;
+}
+
+@keyframes zigN {
+  0%   { left: 0; top: 0; }
+  25%  { left: 25%; top: calc(100% - var(--ball)); }
+  50%  { left: 50%; top: 0; }
+  75%  { left: 75%; top: calc(100% - var(--ball)); }
+  100% { left: calc(100% - var(--ball)); top: 0; }
 }
