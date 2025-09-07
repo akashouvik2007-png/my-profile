@@ -1,0 +1,205 @@
+/* ==============================
+   Global Theme Variables
+   ============================== */
+:root {
+  /* Dark Theme Defaults */
+  --background-color: #000000;   /* AMOLED black */
+  --text-color: #e0e0e0;         /* Light gray text */
+  --navbar-bg: #111;             /* Navbar background */
+  --navbar-border: #333;         /* Navbar border */
+  --navbar-link: #f5c0c0;        /* Navbar link color */
+  --navbar-link-hover: #ffdada;  /* Hover color for links */
+  --navbar-link-underline: #f5c0c0;
+  --footer-bg: rgba(0,0,0,0.15); /* Transparent footer background */
+  --footer-color: #7f8c8d;       /* Footer text color */
+}
+
+/* ==============================
+   General Body & Layout
+   ============================== */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+
+  background: var(--background-color);
+  color: var(--text-color);
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+/* ==============================
+   Navigation Bar
+   ============================== */
+.navbar {
+  width: 100%;
+  background: var(--navbar-bg);
+  border-bottom: 1px solid var(--navbar-border);
+  padding: 12px 0;
+
+  position: sticky; /* Always visible at the top */
+  top: 0;
+  z-index: 1000;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+  transition: background 0.4s ease, box-shadow 0.4s ease;
+}
+
+/* Stronger shadow after scrolling */
+.navbar.scrolled {
+  box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+}
+
+.navbar ul {
+  font-size: larger ;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 30px;
+}
+
+.navbar li {
+  display: inline;
+  position: relative;
+}
+
+/* Navbar links */
+.navbar a {
+  color: var(--navbar-link);
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 6px 0;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+/* Underline animation */
+.navbar a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0%;
+  height: 2px;
+  background: var(--navbar-link-underline);
+  transition: width 0.3s ease;
+}
+
+.navbar a:hover {
+  color: var(--navbar-link-hover);
+}
+
+.navbar a:hover::after {
+  width: 100%;
+}
+
+/* ==============================
+   Footer
+   ============================== */
+footer {
+  display: flex;
+  justify-content: center;
+  margin-top: auto;
+
+  padding: 15px;
+  background: var(--footer-bg);
+  font-size: 14px;
+  color: var(--footer-color);
+  text-align: center;
+
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+
+/* ==============================
+   Light Theme Overrides
+   ============================== */
+body.light-theme {
+  --background-color: #f9f9f9;
+  --text-color: #222;
+  --navbar-bg: #fff;
+  --navbar-border: #ddd;
+  --navbar-link: #e63946;
+  --navbar-link-hover: #ff6b6b;
+  --navbar-link-underline: #e63946;
+  --footer-bg: rgba(0,0,0,.1);
+  --footer-color: #555;
+}
+
+/* Heading override (specific for readability) */
+body.light-theme h4 {
+  color: black;
+}
+
+/* ==============================
+   Theme Toggle Switch
+   ============================== */
+.theme-toggle {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  z-index: 1001;
+}
+
+/* Switch container */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 24px;
+}
+
+/* Hide checkbox input */
+.switch input {
+  display: none;
+}
+
+/* Slider track */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0; left: 0; right: 0; bottom: 0;
+
+  background-color: #555;
+  transition: 0.4s;
+  border-radius: 24px;
+}
+
+/* Slider circle */
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+/* Dark mode (checked) */
+input:checked + .slider {
+  background-color: #222;
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+/* ==============================
+   Animations
+   ============================== */
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
