@@ -23,7 +23,8 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-
+  max-width: 100vw;     /* prevent horizontal overflow */
+  overflow-x: hidden;   /* prevent mobile zoom-out */
   background: var(--background-color);
   color: var(--text-color);
   transition: background-color 0.4s ease, color 0.4s ease;
@@ -37,26 +38,20 @@ body {
   background: var(--navbar-bg);
   border-bottom: 1px solid var(--navbar-border);
   padding: 12px 0;
-
-  position: sticky; /* Always visible at the top */
+  position: sticky;
   top: 0;
   z-index: 1000;
-
   display: flex;
   justify-content: center;
-  align-items: center;
-
   box-shadow: 0 2px 5px rgba(0,0,0,0.3);
   transition: background 0.4s ease, box-shadow 0.4s ease;
 }
 
-/* Stronger shadow after scrolling */
 .navbar.scrolled {
   box-shadow: 0 4px 10px rgba(0,0,0,0.5);
 }
 
 .navbar ul {
-  font-size: larger ;
   list-style: none;
   margin: 0;
   padding: 0;
@@ -69,7 +64,6 @@ body {
   position: relative;
 }
 
-/* Navbar links */
 .navbar a {
   color: var(--navbar-link);
   text-decoration: none;
@@ -80,7 +74,6 @@ body {
   transition: color 0.3s ease;
 }
 
-/* Underline animation */
 .navbar a::after {
   content: '';
   position: absolute;
@@ -107,16 +100,12 @@ footer {
   display: flex;
   justify-content: center;
   margin-top: auto;
-
   padding: 15px;
   background: var(--footer-bg);
   font-size: 14px;
   color: var(--footer-color);
   text-align: center;
-
-  position: absolute;
-  bottom: 0;
-  left: 0;
+  position: relative; /* fix mobile zoom */
   width: 100%;
 }
 
@@ -135,7 +124,6 @@ body.light-theme {
   --footer-color: #555;
 }
 
-/* Heading override (specific for readability) */
 body.light-theme h4 {
   color: black;
 }
@@ -150,7 +138,6 @@ body.light-theme h4 {
   z-index: 1001;
 }
 
-/* Switch container */
 .switch {
   position: relative;
   display: inline-block;
@@ -158,23 +145,19 @@ body.light-theme h4 {
   height: 24px;
 }
 
-/* Hide checkbox input */
 .switch input {
   display: none;
 }
 
-/* Slider track */
 .slider {
   position: absolute;
   cursor: pointer;
   top: 0; left: 0; right: 0; bottom: 0;
-
   background-color: #555;
   transition: 0.4s;
   border-radius: 24px;
 }
 
-/* Slider circle */
 .slider:before {
   position: absolute;
   content: "";
@@ -182,13 +165,11 @@ body.light-theme h4 {
   width: 18px;
   left: 3px;
   bottom: 3px;
-
   background-color: white;
   transition: 0.4s;
   border-radius: 50%;
 }
 
-/* Dark mode (checked) */
 input:checked + .slider {
   background-color: #222;
 }
