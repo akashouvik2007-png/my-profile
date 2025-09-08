@@ -63,7 +63,7 @@ body {
   display: flex;
   gap: 30px;
   flex-wrap: wrap; /* ✅ wrap to prevent overflow */
-  justify-content: center;
+  justify-content: centre;
   max-width: 100%;
   box-sizing: border-box;
 }
@@ -71,6 +71,7 @@ body {
 .navbar li {
   display: inline-block;
   position: relative;
+  margin-right: 20px
 }
 
 .navbar a {
