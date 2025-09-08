@@ -71,7 +71,6 @@ body {
 .navbar li {
   display: inline-block;
   position: relative;
-  margin-right: 20px
 }
 
 .navbar a {
@@ -102,7 +101,7 @@ body {
 /* Mobile navbar spacing */
 @media (max-width: 500px) {
   .navbar ul {
-    gap: 12px;
+    gap: 30px;
   }
 }
 
