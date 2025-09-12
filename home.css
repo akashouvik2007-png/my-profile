@@ -2,14 +2,21 @@
    Home Page Layout & Styles
    ============================== */
 
+/* Fullscreen + no scroll */
+html, body {
+  height: 100%;
+  overflow: hidden;   /* 🚫 disable scrolling */
+}
+
 /* Hero section */
 .hero {
   text-align: center;
   position: relative;
   z-index: 5;
 
-  /* 🔥 make hero fill all space above waves */
+  /* 🔥 flex layout fills remaining space above waves */
   flex: 1;
+  min-height: 0;       /* prevents flex overflow */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -69,6 +76,7 @@ p {
   min-height: 200px;
   margin-top: auto;  /* 🔥 ensures footer sticks to bottom */
   overflow: hidden;
+  flex-shrink: 0;    /* don’t let flexbox compress it */
 }
 
 .wave-footer svg {
@@ -76,14 +84,14 @@ p {
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: 100%;      /* fill container */
   z-index: 1;
   display: block;
 }
 
 .wave-footer footer {
   position: absolute;
-  bottom: 10px;
+  bottom: 10px;       /* rides on top of wave */
   left: 50%;
   transform: translateX(-50%);
   width: 100%;
