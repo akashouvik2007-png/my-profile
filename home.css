@@ -2,10 +2,10 @@
    Home Page Layout & Styles
    ============================== */
 
-/* Fullscreen + no scroll */
+/* Fullscreen + no scroll (works on mobile too) */
 html, body {
-  height: 100%;
-  overflow: hidden;   /* 🚫 disable scrolling */
+  height: 100dvh;    /* 🔥 dynamic viewport height */
+  overflow: hidden;  /* 🚫 disable scrolling */
 }
 
 /* Hero section */
