@@ -72,11 +72,11 @@ p {
 .wave-footer {
   position: relative;
   width: 100%;
-  height: 30vh;      /* wave area fills bottom portion */
-  min-height: 200px;
-  margin-top: auto;  /* 🔥 ensures footer sticks to bottom */
+  height: 30vh;       /* wave area fills bottom portion */
+  max-height: 200px;  /* 🔥 cap instead of forcing min-height */
+  margin-top: auto;   /* ensures footer sticks to bottom */
   overflow: hidden;
-  flex-shrink: 0;    /* don’t let flexbox compress it */
+  flex-shrink: 0;     /* don’t let flexbox compress it */
 }
 
 .wave-footer svg {
@@ -123,7 +123,7 @@ p {
   }
 
   .wave-footer {
-    height: 25vh;
-    min-height: 150px;
+    height: 25vh;       /* smaller on mobile */
+    max-height: 150px;  /* 🔥 ensures waves fit screen */
   }
 }
