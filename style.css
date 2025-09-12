@@ -1,0 +1,190 @@
+/* ==============================
+   Global Theme Variables
+   ============================== */
+:root {
+  --background-color: #000000;
+  --text-color: #e0e0e0;
+  --navbar-bg: #111;
+  --navbar-border: #333;
+  --navbar-link: #f5c0c0;
+  --navbar-link-hover: #ffdada;
+  --navbar-link-underline: #f5c0c0;
+  --footer-bg: rgba(0,0,0,0.15);
+  --footer-color: #7f8c8d;
+}
+
+/* ==============================
+   General Body & Layout
+   ============================== */
+html, body {
+  margin: 0;
+  padding: 0;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: var(--background-color);
+  color: var(--text-color);
+  transition: background-color 0.4s ease, color 0.4s ease;
+  box-sizing: border-box;
+
+  /* 🔥 offset for fixed navbar */
+  padding-top: 60px; 
+}
+
+/* ==============================
+   Navigation Bar
+   ============================== */
+.navbar {
+  width: 100%;
+  background: var(--navbar-bg);
+  border-bottom: 1px solid var(--navbar-border);
+  padding: 12px 0;
+  position: fixed;   /* 🔥 always pinned */
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+  transition: background 0.4s ease, box-shadow 0.4s ease;
+}
+
+.navbar.scrolled {
+  box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+}
+
+.navbar ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.navbar li {
+  display: inline-block;
+  position: relative;
+}
+
+.navbar a {
+  color: var(--navbar-link);
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 6px 0;
+  position: relative;
+  transition: color 0.3s ease;
+  white-space: nowrap;
+}
+
+.navbar a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0%;
+  height: 2px;
+  background: var(--navbar-link-underline);
+  transition: width 0.3s ease;
+}
+
+.navbar a:hover { color: var(--navbar-link-hover); }
+.navbar a:hover::after { width: 100%; }
+
+/* Mobile navbar spacing */
+@media (max-width: 500px) {
+  .navbar ul { gap: 20px; }
+}
+
+/* ==============================
+   Footer
+   ============================== */
+footer {
+  display: flex;
+  justify-content: center;
+  margin-top: auto;
+  padding: 15px;
+  background: var(--footer-bg);
+  font-size: 14px;
+  color: var(--footer-color);
+  text-align: center;
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* ==============================
+   Light Theme Overrides
+   ============================== */
+body.light-theme {
+  --background-color: #f9f9f9;
+  --text-color: #222;
+  --navbar-bg: #fff;
+  --navbar-border: #ddd;
+  --navbar-link: #e63946;
+  --navbar-link-hover: #ff6b6b;
+  --navbar-link-underline: #e63946;
+  --footer-bg: rgba(0,0,0,.1);
+  --footer-color: #555;
+}
+
+body.light-theme h4 { color: black; }
+
+/* ==============================
+   Theme Toggle Switch
+   ============================== */
+.theme-toggle {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  z-index: 1001;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 24px;
+}
+
+.switch input { display: none; }
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: #555;
+  transition: 0.4s;
+  border-radius: 24px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider { background-color: #222; }
+input:checked + .slider:before { transform: translateX(26px); }
+
+/* ==============================
+   Animations
+   ============================== */
+@keyframes fadeIn { to { opacity: 1; } }
