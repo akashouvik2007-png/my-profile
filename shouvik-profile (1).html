@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shouvik's Profile</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    /* =============================================
+       CSS VARIABLES & RESET
+       ============================================= */
+    :root {
+      --bg: #080808;
+      --bg2: #111;
+      --text: #e8e0f0;
+      --muted: #888;
+      --accent: #f5c0c0;
+      --accent2: #b289ef;
+      --accent3: #6cd7ee;
+      --border: #1e1e1e;
+      --nav-h: 58px;
+    }
+    body.light {
+      --bg: #f4f0fa;
+      --bg2: #fff;
+      --text: #1a1a2e;
+      --muted: #666;
+      --accent: #e63946;
+      --accent2: #7c3aed;
+      --accent3: #0ea5e9;
+      --border: #ddd;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      transition: background 0.4s, color 0.4s;
+      min-height: 100vh;
+    }
+
+    /* =============================================
+       NAVBAR
+       ============================================= */
+    .navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: var(--nav-h);
+      background: var(--bg2);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+      transition: background 0.4s, border-color 0.4s;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 8px;
+    }
+
+    .nav-links a {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      padding: 8px 18px;
+      border-radius: 30px;
+      transition: all 0.25s ease;
+      position: relative;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--accent);
+      background: rgba(245,192,192,0.1);
+    }
+
+    body.light .nav-links a:hover,
+    body.light .nav-links a.active {
+      background: rgba(230,57,70,0.1);
+    }
+
+    /* Theme toggle */
+    .theme-toggle {
+      position: fixed;
+      top: 12px;
+      right: 16px;
+      z-index: 1001;
+    }
+    .switch { position: relative; display: inline-block; width: 46px; height: 22px; }
+    .switch input { display: none; }
+    .slider {
+      position: absolute; cursor: pointer;
+      inset: 0; background: #444;
+      border-radius: 22px; transition: 0.3s;
+    }
+    .slider::before {
+      content: ""; position: absolute;
+      width: 16px; height: 16px;
+      left: 3px; top: 3px;
+      background: white; border-radius: 50%;
+      transition: 0.3s;
+    }
+    input:checked + .slider { background: var(--accent2); }
+    input:checked + .slider::before { transform: translateX(24px); }
+
+    /* =============================================
+       PAGE SYSTEM
+       ============================================= */
+    .page {
+      display: none;
+      padding-top: var(--nav-h);
+      min-height: 100vh;
+      flex-direction: column;
+      animation: pageFade 0.4s ease;
+    }
+    .page.active { display: flex; }
+
+    @keyframes pageFade {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* =============================================
+       PAGE 1 — HOME (wave animation)
+       ============================================= */
+    #page-home {
+      overflow: hidden;
+      height: 100dvh;
+    }
+
+    .hero {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      z-index: 5;
+      padding: 0 20px;
+    }
+
+    .hero h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2.2rem, 6vw, 4rem);
+      font-weight: 800;
+      color: var(--text);
+      letter-spacing: -0.02em;
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      color: var(--muted);
+      margin: 12px 0 36px;
+    }
+
+    .btn-wrapper {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+    }
+
+    .btn-icon {
+      width: 52px; height: 52px;
+      border-radius: 50%;
+      background: var(--bg2);
+      border: 1.5px solid var(--border);
+      color: var(--text);
+      font-size: 18px;
+      display: inline-flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+    .btn-icon:hover {
+      transform: translateY(-3px);
+      border-color: var(--accent);
+      color: var(--accent);
+      box-shadow: 0 8px 20px rgba(245,192,192,0.15);
+    }
+
+    .wave-footer {
+      position: relative;
+      width: 100%;
+      height: 30vh;
+      max-height: 200px;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+    .wave-footer svg {
+      position: absolute; bottom: 0; left: 0;
+      width: 100%; height: 100%;
+    }
+    .wave-footer footer {
+      position: absolute; bottom: 10px; left: 50%;
+      transform: translateX(-50%);
+      text-align: center; z-index: 2;
+      font-size: 13px; color: var(--muted);
+      white-space: nowrap;
+    }
+
+    /* =============================================
+       PAGE 2 — GALLERY
+       ============================================= */
+    #page-gallery {
+      background: var(--bg);
+    }
+
+    .profile-header {
+      display: flex;
+      align-items: center;
+      padding: 28px 24px;
+      background: var(--bg2);
+      border-bottom: 1px solid var(--border);
+      gap: 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .profile-header::before {
+      content: "";
+      position: absolute; inset: 0;
+      background: url("images/fish.webp") center/cover no-repeat;
+      opacity: 0.08;
+    }
+
+    .avatar {
+      width: 90px; height: 90px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--accent);
+      position: relative; z-index: 1;
+      flex-shrink: 0;
+    }
+
+    .profile-info { position: relative; z-index: 1; }
+    .profile-info h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.8rem; font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+    .profile-info a {
+      color: var(--accent3); font-size: 0.9rem;
+      text-decoration: none; display: block; margin: 2px 0 4px;
+    }
+    .profile-info a:hover { text-decoration: underline; }
+    .profile-info p { color: var(--muted); font-size: 0.88rem; }
+
+    .gallery-section { padding: 28px 20px 10px; }
+
+    .gallery-label {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.7rem; font-weight: 700;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 16px;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .gallery-label::after {
+      content: ""; flex: 1; height: 1px;
+      background: var(--border);
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 10px;
+    }
+
+    .gallery a { display: block; overflow: hidden; border-radius: 10px; }
+    .gallery img {
+      width: 100%; aspect-ratio: 1/1;
+      object-fit: cover; display: block;
+      transition: transform 0.4s ease, filter 0.3s ease;
+    }
+    .gallery a:hover img {
+      transform: scale(1.08);
+      filter: brightness(1.1);
+    }
+
+    .gallery-caption {
+      padding: 16px 20px 10px;
+      color: var(--muted); font-size: 0.85rem;
+    }
+
+    /* Zigzag Ball */
+    :root { --ball: 18px; }
+    .arena-container {
+      display: flex; justify-content: center;
+      padding: 16px 20px;
+    }
+    .arena {
+      width: min(480px, 100%); height: 44px;
+      border: 1.5px solid var(--accent);
+      border-radius: 8px; position: relative;
+      overflow: hidden; background: var(--bg2);
+    }
+    .ball {
+      width: var(--ball); height: var(--ball);
+      border-radius: 50%; background: var(--accent);
+      position: absolute; top: 0; left: 0;
+      animation: zigN 2s linear infinite alternate;
+      box-shadow: 0 0 12px rgba(245,192,192,0.5);
+    }
+    @keyframes zigN {
+      0%   { left: 0; top: 0; }
+      25%  { left: 25%; top: calc(100% - var(--ball)); }
+      50%  { left: 50%; top: 0; }
+      75%  { left: 75%; top: calc(100% - var(--ball)); }
+      100% { left: calc(100% - var(--ball)); top: 0; }
+    }
+
+    #page-gallery footer {
+      margin-top: auto; padding: 18px;
+      text-align: center; font-size: 13px;
+      color: var(--muted); border-top: 1px solid var(--border);
+    }
+
+    /* =============================================
+       PAGE 3 — ABOUT
+       ============================================= */
+    #page-about {
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .under-construction {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      flex: 1;
+      gap: 20px;
+      padding: 40px 20px;
+    }
+
+    .construction-icon {
+      font-size: 5rem;
+      animation: bounce 1.8s ease-in-out infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(-14px); }
+    }
+
+    .under-construction h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(1.8rem, 5vw, 3rem);
+      font-weight: 800;
+    }
+
+    .under-construction p {
+      color: var(--muted);
+      max-width: 360px;
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+
+    .progress-bar-wrap {
+      width: min(340px, 90%);
+      height: 6px;
+      background: var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+      margin-top: 8px;
+    }
+    .progress-bar-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--accent2), var(--accent));
+      border-radius: 6px;
+      animation: fillBar 3s ease forwards 0.5s;
+    }
+    @keyframes fillBar {
+      to { width: 37%; }
+    }
+
+    /* =============================================
+       PAGE 4 — CONTACT
+       ============================================= */
+    #page-contact {
+      align-items: center;
+    }
+
+    .contact-title {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      font-weight: 800;
+      text-align: center;
+      padding: 40px 20px 10px;
+      letter-spacing: -0.01em;
+    }
+    .contact-title i { color: var(--accent2); margin-right: 10px; }
+
+    .contact-sub {
+      color: var(--muted); font-size: 0.9rem;
+      text-align: center; margin-bottom: 32px;
+    }
+
+    .links-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+      width: min(560px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+    @media (min-width: 600px) {
+      .links-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    .box {
+      background: var(--bg2);
+      border: 1.5px solid var(--border);
+      border-radius: 14px;
+      padding: 22px 16px;
+      text-align: center;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+    }
+    .box:hover {
+      transform: translateY(-4px) scale(1.02);
+      box-shadow: 0 12px 28px rgba(0,0,0,0.25);
+    }
+    .box a {
+      color: var(--text);
+      text-decoration: none;
+      display: flex; flex-direction: column;
+      align-items: center; gap: 10px;
+      font-size: 0.85rem; font-weight: 500;
+    }
+    .box a i { font-size: 26px; transition: color 0.2s; }
+
+    /* Brand colors on hover */
+    .box:hover .fa-at        { color: #ffb400; }
+    .box:hover .fa-instagram { color: #e1306c; }
+    .box:hover .fa-discord   { color: #5865f2; }
+    .box:hover .fa-youtube   { color: #ff0000; }
+    .box:hover .fa-twitter   { color: #1da1f2; }
+    .box:hover .fa-spotify   { color: #1db954; }
+
+    /* Border glow on hover per brand */
+    .box:has(.fa-at):hover        { border-color: #ffb400; box-shadow: 0 8px 24px rgba(255,180,0,0.15); }
+    .box:has(.fa-instagram):hover { border-color: #e1306c; box-shadow: 0 8px 24px rgba(225,48,108,0.15); }
+    .box:has(.fa-discord):hover   { border-color: #5865f2; box-shadow: 0 8px 24px rgba(88,101,242,0.15); }
+    .box:has(.fa-youtube):hover   { border-color: #ff0000; box-shadow: 0 8px 24px rgba(255,0,0,0.15); }
+    .box:has(.fa-twitter):hover   { border-color: #1da1f2; box-shadow: 0 8px 24px rgba(29,161,242,0.15); }
+    .box:has(.fa-spotify):hover   { border-color: #1db954; box-shadow: 0 8px 24px rgba(29,185,84,0.15); }
+
+    #page-contact footer {
+      margin-top: auto; padding: 28px 20px;
+      text-align: center; font-size: 13px;
+      color: var(--muted); width: 100%;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <ul class="nav-links">
+      <li><a href="#" onclick="showPage('home')" id="nav-home" class="active">Home</a></li>
+      <li><a href="#" onclick="showPage('gallery')" id="nav-gallery">Gallery</a></li>
+      <li><a href="#" onclick="showPage('about')" id="nav-about">About</a></li>
+      <li><a href="#" onclick="showPage('contact')" id="nav-contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- THEME TOGGLE -->
+  <div class="theme-toggle">
+    <label class="switch">
+      <input type="checkbox" id="themeSlider">
+      <span class="slider"></span>
+    </label>
+  </div>
+
+  <!-- =============================================
+       PAGE 1: HOME
+       ============================================= -->
+  <div id="page-home" class="page active">
+    <main class="hero">
+      <h1>Hie! I Am Shouvik</h1>
+      <p>I hope you enjoy here :D, good day!</p>
+      <div class="btn-wrapper">
+        <div class="btn-icon" id="pauseBtn" title="Pause"><i class="fas fa-pause"></i></div>
+        <div class="btn-icon" id="playBtn"  title="Play"><i class="fas fa-play"></i></div>
+        <div class="btn-icon" id="colorBtn" title="Change Color"><i class="fas fa-palette"></i></div>
+      </div>
+    </main>
+
+    <div class="wave-footer">
+      <svg id="waveSVG" preserveAspectRatio="none">
+        <path id="wave1"></path>
+        <path id="wave2"></path>
+      </svg>
+      <footer>Made with <i class="fas fa-heart" style="color:var(--accent)"></i> by Shouvik</footer>
+    </div>
+  </div>
+
+  <!-- =============================================
+       PAGE 2: GALLERY
+       ============================================= -->
+  <div id="page-gallery" class="page">
+    <!-- Profile Header -->
+    <div class="profile-header">
+      <img src="https://i.pinimg.com/1200x/b3/8e/51/b38e5178d2a0ba905852de8b4fc284db.jpg"
+           alt="Shouvik's avatar" class="avatar">
+      <div class="profile-info">
+        <h1>shouvik</h1>
+        <a href="https://www.instagram.com/shouvik_2007/" target="_blank">@shouvik_2007</a>
+        <p>Hobby artist, undergrad</p>
+      </div>
+    </div>
+
+    <!-- Gallery Grid -->
+    <div class="gallery-section">
+      <div class="gallery-label">Some of my works</div>
+      <div class="gallery">
+        <a href="images/pic1.jpg" target="_blank"><img src="images/pic1.jpg" alt="Artwork 1" loading="lazy"></a>
+        <a href="images/pic2.jpg" target="_blank"><img src="images/pic2.jpg" alt="Artwork 2" loading="lazy"></a>
+        <a href="images/pic3.jpg" target="_blank"><img src="images/pic3.jpg" alt="Artwork 3" loading="lazy"></a>
+        <a href="images/pic4.jpg" target="_blank"><img src="images/pic4.jpg" alt="Artwork 4" loading="lazy"></a>
+        <a href="images/pic5.jpg" target="_blank"><img src="images/pic5.jpg" alt="Artwork 5" loading="lazy"></a>
+        <a href="images/pic6.jpg" target="_blank"><img src="images/pic6.jpg" alt="Artwork 6" loading="lazy"></a>
+        <a href="images/pic7.jpg" target="_blank"><img src="images/pic7.jpg" alt="Artwork 7" loading="lazy"></a>
+        <a href="images/pic8.jpg" target="_blank"><img src="images/pic8.jpg" alt="Artwork 8" loading="lazy"></a>
+        <a href="images/pic9.jpg" target="_blank"><img src="images/pic9.jpg" alt="Artwork 9" loading="lazy"></a>
+      </div>
+    </div>
+
+    <p class="gallery-caption">Khel khatam, thanks for visiting :D &nbsp;— more coming soon!</p>
+
+    <div class="arena-container">
+      <div class="arena"><div class="ball"></div></div>
+    </div>
+
+    <footer>&copy; 2025 Shouvik. All rights reserved.</footer>
+  </div>
+
+  <!-- =============================================
+       PAGE 3: ABOUT
+       ============================================= -->
+  <div id="page-about" class="page">
+    <div class="under-construction">
+      <div class="construction-icon">🚧</div>
+      <h1>Page Under Construction</h1>
+      <p>Something cool is being built here. Check back soon!</p>
+      <div class="progress-bar-wrap">
+        <div class="progress-bar-fill"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =============================================
+       PAGE 4: CONTACT
+       ============================================= -->
+  <div id="page-contact" class="page">
+    <h1 class="contact-title"><i class="fa-solid fa-link"></i>Links</h1>
+    <p class="contact-sub">Find me across the internet</p>
+
+    <div class="links-grid">
+      <div class="box"><a href="mailto:aka.shouvik2007@gmail.com"><i class="fa-solid fa-at"></i><span>email</span></a></div>
+      <div class="box"><a href="https://instagram.com/shouvik_2007/" target="_blank"><i class="fa-brands fa-instagram"></i><span>instagram</span></a></div>
+      <div class="box"><a href="https://discord.gg/rBQ8Ntec" target="_blank"><i class="fa-brands fa-discord"></i><span>discord</span></a></div>
+      <div class="box"><a href="https://youtube.com/@pyruvate-j5f" target="_blank"><i class="fa-brands fa-youtube"></i><span>youtube</span></a></div>
+      <div class="box"><a href="https://x.com/aka_shouvik2007/" target="_blank"><i class="fa-brands fa-twitter"></i><span>twitter</span></a></div>
+      <div class="box"><a href="https://open.spotify.com/user/5xnyv73jxvrplyqbif5ji537e?si=f0ufxFHvStOd-X7DbCy7Bg" target="_blank"><i class="fa-brands fa-spotify"></i><span>spotify</span></a></div>
+    </div>
+
+    <footer>&copy; 2025 Shouvik. All rights reserved.</footer>
+  </div>
+
+  <script>
+    /* =============================================
+       PAGE NAVIGATION
+       ============================================= */
+    function showPage(name) {
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+      document.getElementById('page-' + name).classList.add('active');
+      document.getElementById('nav-' + name).classList.add('active');
+
+      // Restart progress bar animation when about page opens
+      if (name === 'about') {
+        const bar = document.querySelector('.progress-bar-fill');
+        bar.style.animation = 'none';
+        bar.offsetHeight; // reflow
+        bar.style.animation = '';
+      }
+      return false;
+    }
+
+    // Prevent default on nav clicks
+    document.querySelectorAll('.nav-links a').forEach(a => {
+      a.addEventListener('click', e => e.preventDefault());
+    });
+
+    /* =============================================
+       THEME TOGGLE
+       ============================================= */
+    const slider  = document.getElementById('themeSlider');
+    const body    = document.body;
+    const saved   = localStorage.getItem('theme');
+    if (saved === 'light') { body.classList.add('light'); slider.checked = true; }
+
+    slider.addEventListener('change', () => {
+      body.classList.toggle('light');
+      localStorage.setItem('theme', body.classList.contains('light') ? 'light' : 'dark');
+    });
+
+    /* =============================================
+       WAVE ANIMATION (Home page)
+       ============================================= */
+    const wave1 = document.getElementById('wave1');
+    const wave2 = document.getElementById('wave2');
+    const svg   = document.getElementById('waveSVG');
+
+    let angle    = 0;
+    let isPaused = false;
+
+    wave1.setAttribute('fill', '#B289EF');
+    wave2.setAttribute('fill', 'rgba(150, 97, 255, 0.75)');
+
+    const colors = ['#B289EF','#dc75ff','#9d9ade','#6cd7ee','#aceeae','#f5c0c0'];
+
+    function generateWave(amplitude, frequency, offsetY, w, h) {
+      let d = `M 0 ${offsetY} `;
+      for (let i = 0; i <= 60; i++) {
+        const x = (i / 60) * w;
+        const y = offsetY + Math.sin((i / 60) * frequency + angle) * amplitude;
+        d += `L ${x} ${y} `;
+      }
+      d += `L ${w} ${h || 200} L 0 ${h || 200} Z`;
+      return d;
+    }
+
+    function drawWaves() {
+      const w = svg.clientWidth  || window.innerWidth;
+      const h = svg.clientHeight || 200;
+      wave1.setAttribute('d', generateWave(55, 4, h * 0.38, w, h));
+      wave2.setAttribute('d', generateWave(38, 3, h * 0.55, w, h));
+    }
+
+    function animate() {
+      if (!isPaused) { angle += 0.02; drawWaves(); }
+      requestAnimationFrame(animate);
+    }
+    drawWaves();
+    animate();
+
+    document.getElementById('pauseBtn').addEventListener('click', () => { isPaused = true; });
+    document.getElementById('playBtn').addEventListener('click',  () => { isPaused = false; });
+    document.getElementById('colorBtn').addEventListener('click', () => {
+      const c1 = colors[Math.floor(Math.random() * colors.length)];
+      let c2;
+      do { c2 = colors[Math.floor(Math.random() * colors.length)]; } while (c2 === c1);
+      wave1.setAttribute('fill', c1);
+      wave2.setAttribute('fill', c2);
+    });
+
+    window.addEventListener('resize', drawWaves);
+  </script>
+</body>
+</html>
